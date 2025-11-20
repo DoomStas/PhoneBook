@@ -19,10 +19,11 @@ namespace PhoneBook
             _phoneNumber = new string[size];
             _count = 0;
         }
+
         public string this[string name]
         {
             get
-            { 
+            {
                 for (int i = 0; i < _count; i++)
                 {
                     if (_name[i] == name)
@@ -30,6 +31,7 @@ namespace PhoneBook
                         return _phoneNumber[i];
                     }
                 }
+
                 return "Not Found";
             }
             set
@@ -43,6 +45,7 @@ namespace PhoneBook
                         return;
                     }
                 }
+
                 // if the name does not exist, add a new entry
                 if (_count < _name.Length)
                 {
@@ -57,12 +60,29 @@ namespace PhoneBook
             }
         }
 
-        public void ShowAllEntries()
+        public string this[int index]
         {
+            get { return $"Name: {_name[index]}, Phone Number: {_phoneNumber[index]}"; }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return _count;
+            }
+        }
+
+        public string[] ShowAllEntries()
+        {
+            string[] dictionary = new string[_count];
+
             for (int i = 0; i < _count; i++)
             {
-                Console.WriteLine($"Name: {_name[i]}, Phone Number: {_phoneNumber[i]}");
+                dictionary[i] = $"Name: {_name[i]}, Phone Number: {_phoneNumber[i]}";
             }
+
+            return dictionary;
         }
     }
 }
