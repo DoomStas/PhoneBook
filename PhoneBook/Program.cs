@@ -11,7 +11,21 @@
             Console.WriteLine("Alice's number: " + phoneBook["Alice"]);
             Console.WriteLine("Bob's number: " + phoneBook["Bob"]);
             Console.WriteLine("Eve's number: " + phoneBook["Eve"]);
-            phoneBook.ShowAllEntries();
+
+            Console.WriteLine("All entries using method:");
+            foreach (string entry in phoneBook.ShowAllEntries())
+            {
+                Console.WriteLine(entry);
+            }
+            
+            Console.WriteLine("All entries using indexation:");
+
+            for (int i = 0; i < phoneBook.Count; i++)
+            {
+                Console.WriteLine(phoneBook[i]);
+            }
+
+  
         }
     }
 }
