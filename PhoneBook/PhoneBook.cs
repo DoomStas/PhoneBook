@@ -8,17 +8,17 @@ namespace PhoneBook
 {
     public class PhoneBook
     {
-        private string[] _name;
-        private string[] _phoneNumber;
+        private Contact[] _contacts;
         private int _count;
 
 
         public PhoneBook(int size)
         {
-            _name = new string[size];
-            _phoneNumber = new string[size];
+            _contacts = new Contact[size];
             _count = 0;
         }
+
+        
 
         public string this[string name]
         {
@@ -26,9 +26,9 @@ namespace PhoneBook
             {
                 for (int i = 0; i < _count; i++)
                 {
-                    if (_name[i] == name)
+                    if (_contacts[i].Name == name)
                     {
-                        return _phoneNumber[i];
+                        return _contacts[i].PhoneNumber;
                     }
                 }
 
@@ -39,18 +39,17 @@ namespace PhoneBook
                 // if the name exists, update the phone number
                 for (int i = 0; i < _count; i++)
                 {
-                    if (_name[i] == name)
+                    if (_contacts[i].Name == name)
                     {
-                        _phoneNumber[i] = value;
+                        _contacts[i].PhoneNumber = value;
                         return;
                     }
                 }
 
                 // if the name does not exist, add a new entry
-                if (_count < _name.Length)
+                if (_count < _contacts.Length)
                 {
-                    _name[_count] = name;
-                    _phoneNumber[_count] = value;
+                    _contacts[_count] = new Contact(name, value);
                     _count++;
                 }
                 else
@@ -62,7 +61,7 @@ namespace PhoneBook
 
         public string this[int index]
         {
-            get { return $"Name: {_name[index]}, Phone Number: {_phoneNumber[index]}"; }
+            get { return $"Name: {_contacts[index].Name}, Phone Number: {_contacts[index].PhoneNumber}"; }
         }
 
         public int Count
@@ -79,7 +78,7 @@ namespace PhoneBook
 
             for (int i = 0; i < _count; i++)
             {
-                dictionary[i] = $"Name: {_name[i]}, Phone Number: {_phoneNumber[i]}";
+                dictionary[i] = $"Name: {_contacts[i].Name}, Phone Number: {_contacts[i].PhoneNumber}";
             }
 
             return dictionary;
